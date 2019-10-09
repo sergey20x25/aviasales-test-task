@@ -5,7 +5,6 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import App from './components/App';
 import reducers from './reducers';
-import { getTickets } from './actions/thunkActions';
 
 const initialState = {
   tickets: [],
@@ -23,8 +22,6 @@ const store = createStore(
     applyMiddleware(thunk),
   ),
 );
-
-getTickets();
 
 render(
   <Provider store={store}>

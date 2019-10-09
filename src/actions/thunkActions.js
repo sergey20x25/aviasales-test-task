@@ -1,6 +1,6 @@
 /* eslint-disable no-await-in-loop */
 import * as actions from '.';
-import addIds from '../utils';
+import { addIds } from '../utils';
 import { getTicketBatchRes, getSearchId } from '../fetch';
 
 const getTickets = () => async (dispatch) => {

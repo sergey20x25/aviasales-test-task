@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import * as thunkActions from '../actions/thunkActions';
-import logo from '../logo.svg';
+import Header from './Header/Header';
 import './App.css';
 
 const mapStateToProps = (state) => {
@@ -22,9 +22,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-        </header>
+        <Header />
         <button type="button" onClick={this.handleClick}>get</button>
       </div>
     );
