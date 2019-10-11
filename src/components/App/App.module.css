@@ -1,0 +1,29 @@
+html, body {
+  background-color: #f3f7fa;
+  font-family: Open Sans, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.root {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -10px;
+  width: 840px;
+}
+
+.filters {
+  flex: 1 0 230px;
+  margin: 10px;
+}
+
+.tickets {
+  flex: 100 0 340px;
+  margin: 10px;
+}
