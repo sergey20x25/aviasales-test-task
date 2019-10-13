@@ -7,9 +7,9 @@ import styles from './StopsFilter.module.css';
 
 const allValues = stopsFilterList.reduce((acc, item) => ({ ...acc, [item.value]: true }), {});
 class StopsFilter extends React.PureComponent {
-  handleChange = (event) => {
+  handleCheck = (event) => {
     const { checked, value } = event.target;
-    const { filterValue, changeStopsFilter } = this.props;
+    const { filterValue, handleFilterChange } = this.props;
     let newValue;
     if (checked) {
       newValue = omit(filterValue, `${value}`);
@@ -19,14 +19,14 @@ class StopsFilter extends React.PureComponent {
     if (Object.keys(newValue).length === 0) {
       newValue = null;
     }
-    changeStopsFilter({ newValue });
+    handleFilterChange({ newValue });
   }
 
-  handleAllChange = (event) => {
-    const { changeStopsFilter } = this.props;
+  handleAllCheck = (event) => {
+    const { handleFilterChange } = this.props;
     const { checked } = event.target;
     const newValue = checked ? null : allValues;
-    changeStopsFilter({ newValue });
+    handleFilterChange({ newValue });
   }
 
   render() {
@@ -35,14 +35,14 @@ class StopsFilter extends React.PureComponent {
     return (
       <div className={styles.root}>
         <h2 className={styles.title}>Количество пересадок</h2>
-        <Checkbox value="all" checked={checkedAll} label="Все" onChange={this.handleAllChange} />
+        <Checkbox value="all" checked={checkedAll} label="Все" onCheck={this.handleAllCheck} />
         {stopsFilterList.map(({ label, value }) => (
           <Checkbox
             key={value}
             value={value}
             checked={checkedAll || !(filterValue.hasOwnProperty(value))}
             label={label}
-            onChange={this.handleChange}
+            onCheck={this.handleCheck}
           />
         ))}
       </div>
@@ -51,7 +51,7 @@ class StopsFilter extends React.PureComponent {
 }
 
 StopsFilter.propTypes = {
-  changeStopsFilter: PropTypes.func,
+  handleFilterChange: PropTypes.func,
   filterValue: PropTypes.objectOf(PropTypes.bool),
 };
 

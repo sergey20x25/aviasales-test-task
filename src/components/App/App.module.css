@@ -18,12 +18,12 @@ html, body {
   width: 840px;
 }
 
-.filters {
+.sidebar {
   flex: 1 0 230px;
   margin: 10px;
 }
 
-.tickets {
+.main {
   flex: 100 0 340px;
   margin: 10px;
 }

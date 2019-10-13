@@ -17,7 +17,7 @@ const mapStateToProps = (state) => {
     fetchingState,
     sortBy,
     tickets: ticketsToRenderSelector(state),
-    uncheckedStops: filters.stops,
+    stopsFilterValue: filters.stops,
   };
   return props;
 };
@@ -25,8 +25,8 @@ const mapStateToProps = (state) => {
 const actionCreators = {
   changeSortingParam: actions.changeSortingParam,
   changeStopsFilter: actions.changeStopsFilter,
-  getTickets: thunkActions.getTickets,
   showMore: actions.showMoreTickets,
+  getTickets: thunkActions.getTickets,
 };
 
 class App extends React.Component {
@@ -39,28 +39,25 @@ class App extends React.Component {
     const {
       tickets,
       fetchingState,
-      uncheckedStops,
+      stopsFilterValue,
       sortBy,
       changeStopsFilter,
       changeSortingParam,
       showMore,
     } = this.props;
+    const isLoading = fetchingState === 'fetching';
     return (
       <>
         <Header />
         <div className={styles.root}>
           <div className={styles.container}>
-            <div className={styles.filters}>
-              <StopsFilter filterValue={uncheckedStops} changeStopsFilter={changeStopsFilter} />
-              <Loading isLoading={fetchingState === 'fetching'} />
+            <div className={styles.sidebar}>
+              <StopsFilter filterValue={stopsFilterValue} handleFilterChange={changeStopsFilter} />
+              <Loading isLoading={isLoading} />
             </div>
-            <div className={styles.tickets}>
-              <SortingTabs sortBy={sortBy} changeSortingParam={changeSortingParam} />
-              <TicketList
-                tickets={tickets}
-                fetchingState={fetchingState}
-                handleShowMore={showMore}
-              />
+            <div className={styles.main}>
+              <SortingTabs sortBy={sortBy} handleTabChange={changeSortingParam} />
+              <TicketList tickets={tickets} isLoading={isLoading} handleShowMore={showMore} />
             </div>
           </div>
         </div>
@@ -77,7 +74,7 @@ App.propTypes = ({
   fetchingState: PropTypes.string,
   sortBy: PropTypes.string,
   tickets: PropTypes.arrayOf(PropTypes.object),
-  uncheckedStops: PropTypes.objectOf(PropTypes.bool),
+  stopsFilterValue: PropTypes.objectOf(PropTypes.bool),
 });
 
 export default connect(mapStateToProps, actionCreators)(App);

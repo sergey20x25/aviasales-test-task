@@ -6,7 +6,7 @@ const Checkbox = React.memo(({
   label,
   value,
   checked,
-  onChange,
+  onCheck,
 }) => (
   <div className={styles.root}>
     <label className={styles.label} htmlFor={value}>
@@ -16,7 +16,7 @@ const Checkbox = React.memo(({
         id={value}
         checked={checked}
         value={value}
-        onChange={onChange}
+        onChange={onCheck}
       />
       <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
         <g fill="none" fillRule="evenodd">
@@ -47,7 +47,7 @@ Checkbox.propTypes = {
   label: PropTypes.string,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   checked: PropTypes.bool,
-  onChange: PropTypes.func,
+  onCheck: PropTypes.func,
 };
 
 export default Checkbox;

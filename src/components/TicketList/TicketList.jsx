@@ -4,8 +4,8 @@ import Ticket from '../Ticket/Ticket';
 import NoTickets from '../NoTickets/NoTickets';
 import styles from './TicketList.module.css';
 
-const TicketList = React.memo(({ tickets, fetchingState, handleShowMore }) => {
-  if ((!tickets || !tickets.length) && fetchingState === 'done') {
+const TicketList = React.memo(({ tickets, isLoading, handleShowMore }) => {
+  if ((!tickets || !tickets.length) && isLoading) {
     return (<NoTickets />);
   }
   return (
@@ -18,7 +18,7 @@ const TicketList = React.memo(({ tickets, fetchingState, handleShowMore }) => {
 });
 
 TicketList.propTypes = ({
-  fetchingState: PropTypes.string,
+  isLoading: PropTypes.bool,
   tickets: PropTypes.arrayOf(PropTypes.object).isRequired,
   handleShowMore: PropTypes.func,
 });

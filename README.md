@@ -2,4 +2,24 @@
 
 # Aviasales frontend test task
 
+## Description
+Application that filters and sorts tickets
+
+Used technologies: React, Redux, Reselect
+
+## Installation
+```sh
+$ npm install
+```
+## Launch
+```sh
+$ npm run start
+
+http://localhost:3000/
+```
+## Build
+```sh
+$ npm run build
+```
+
 [sergey20x25-aviasales-test.herokuapp.com](https://sergey20x25-aviasales-test.herokuapp.com/)

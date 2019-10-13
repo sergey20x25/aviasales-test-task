@@ -18,7 +18,7 @@ const Ticket = React.memo(({ ticket }) => {
           {`${splitNumber(price)} Р`}
         </div>
         <div className={styles.carrier}>
-          <img src={carrier ? `http://pics.avs.io/99/36/${carrier}.png` : defaultImage} alt="carrier" />
+          <img src={carrier ? `http://pics.avs.io/99/36/${carrier}.png` : defaultImage} alt="" />
         </div>
       </div>
       <div className={styles.row}>
