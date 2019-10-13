@@ -1,49 +1,11 @@
 import React from 'react';
-import {
-  getStartAndFinishTime,
-  formatDuration,
-  getDeclension,
-  splitNumber,
-} from '../../utils';
+import PropTypes from 'prop-types';
+import Segment from '../Segment/Segment';
+import { splitNumber } from '../../utils';
 import styles from './Ticket.module.css';
-import defaultImage from './defaultImage.png';
+import defaultImage from './resources/defaultImage.png';
 
-const renderSegment = ({
-  origin,
-  destination,
-  date,
-  duration,
-  stops,
-}) => (
-  <div key={date} className={styles.segment}>
-    <div className={styles.route}>
-      <div className={styles.label}>
-        {`${origin} – ${destination}`}
-      </div>
-      <div className={styles.info}>
-        {getStartAndFinishTime(date, duration)}
-      </div>
-    </div>
-    <div className={styles.length}>
-      <div className={styles.label}>В ПУТИ</div>
-      <div className={styles.info}>
-        {formatDuration(duration)}
-      </div>
-    </div>
-    <div className={styles.stops}>
-      <div className={styles.label}>
-        {stops.length === 0
-          ? 'БЕЗ ПЕРЕСАДОК'
-          : `${stops.length} ${getDeclension(stops.length, ['ПЕРЕСАДКА', 'ПЕРЕСАДКИ', 'ПЕРЕСАДОК'])}`}
-      </div>
-      <div className={styles.info}>
-        {stops.join(', ')}
-      </div>
-    </div>
-  </div>
-);
-
-const Ticket = ({ ticket }) => {
+const Ticket = React.memo(({ ticket }) => {
   const {
     price,
     carrier,
@@ -60,10 +22,18 @@ const Ticket = ({ ticket }) => {
         </div>
       </div>
       <div className={styles.row}>
-        {segments.map((segment) => renderSegment(segment))}
+        {segments.map((item) => <Segment key={item.date} segment={item} />)}
       </div>
     </div>
   );
+});
+
+Ticket.propTypes = {
+  ticket: PropTypes.shape({
+    price: PropTypes.number,
+    carrier: PropTypes.string,
+    segments: PropTypes.arrayOf(PropTypes.object),
+  }),
 };
 
 export default Ticket;

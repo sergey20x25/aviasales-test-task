@@ -1,9 +1,26 @@
 import uuid from 'uuid/v4';
 
-const addIds = (array) => {
+const getMaxStops = ({ segments }) => {
+  if (segments.length === 1) return segments[0].stops.length;
+  const maxStops = segments.reduce((acc, value) => (
+    acc.stops.length > value.stops.length ? acc.stops.length : value.stops.length
+  ));
+  return maxStops;
+};
+
+const getTotalDuration = ({ segments }) => {
+  if (segments.length === 1) return segments[0].duration;
+  const totalDuration = segments.reduce((acc, value) => (
+    acc.duration + value.duration
+  ));
+  return totalDuration;
+};
+
+const addIdsMaxStopsAndTotalDuration = (array) => {
   array.forEach((item) => {
-    // eslint-disable-next-line no-param-reassign
     item.id = uuid();
+    item.maxStops = getMaxStops(item);
+    item.totalDuration = getTotalDuration(item);
   });
 };
 
@@ -38,7 +55,7 @@ const formatDuration = (minutes) => {
   return formated;
 };
 
-const getDeclension = (n, forms) => {
+const getPluralForm = (n, forms) => {
   let number = Math.abs(n) % 100;
   if (number >= 5 && number <= 20) {
     return forms[2];
@@ -54,9 +71,9 @@ const getDeclension = (n, forms) => {
 };
 
 export {
-  addIds,
-  getDeclension,
-  getStartAndFinishTime,
+  addIdsMaxStopsAndTotalDuration,
   formatDuration,
+  getPluralForm,
+  getStartAndFinishTime,
   splitNumber,
 };

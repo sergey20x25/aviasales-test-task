@@ -1,64 +1,58 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import * as actions from '../../actions';
+import PropTypes from 'prop-types';
+import omit from 'lodash-es/omit';
 import Checkbox from '../Checkbox/Checkbox';
-import { stopsFilterList } from './stopsFilterList';
+import stopsFilterList from './stopsFilterList';
 import styles from './StopsFilter.module.css';
 
-// const mapStateToProps = (state) => {
-//   const props = {
-//     channels: channelsSelector(state),
-//     currentChannelId: getCurrentChannelId(state),
-//   };
-//   return props;
-// };
-
-// const actionCreators = {
-//   selectChannel: actions.selectChannel,
-// };
-
+const allValues = stopsFilterList.reduce((acc, item) => ({ ...acc, [item.value]: true }), {});
 class StopsFilter extends React.PureComponent {
-  // handleSpacePress = (value) => (event) => {
-  //   if (event.key === 'Space') {
-  //     // change
-  //   }
-  // }
+  handleChange = (event) => {
+    const { checked, value } = event.target;
+    const { filterValue, changeStopsFilter } = this.props;
+    let newValue;
+    if (checked) {
+      newValue = omit(filterValue, `${value}`);
+    } else {
+      newValue = { ...filterValue, [value]: true };
+    }
+    if (Object.keys(newValue).length === 0) {
+      newValue = null;
+    }
+    changeStopsFilter({ newValue });
+  }
+
+  handleAllChange = (event) => {
+    const { changeStopsFilter } = this.props;
+    const { checked } = event.target;
+    const newValue = checked ? null : allValues;
+    changeStopsFilter({ newValue });
+  }
 
   render() {
+    const { filterValue } = this.props;
+    const checkedAll = filterValue === null;
     return (
       <div className={styles.root}>
         <h2 className={styles.title}>Количество пересадок</h2>
-        <div
-          className={styles.checkbox}
-          role="button"
-          tabIndex="0"
-          // onClick={this.handleAllChange}
-          // onKeyUp={this.handleSpacePress}
-        >
-          <Checkbox value="all" checked={false} label="Все" />
-        </div>
+        <Checkbox value="all" checked={checkedAll} label="Все" onChange={this.handleAllChange} />
         {stopsFilterList.map(({ label, value }) => (
-          <div
-            className={styles.checkbox}
+          <Checkbox
             key={value}
-            role="button"
-            tabIndex="0"
-            // onClick={this.handleAllChange(value)}
-            // onKeyUp={this.handleSpacePress(value)}
-          >
-            <Checkbox value={value} checked={false} label={label} />
-          </div>
+            value={value}
+            checked={checkedAll || !(filterValue.hasOwnProperty(value))}
+            label={label}
+            onChange={this.handleChange}
+          />
         ))}
       </div>
     );
   }
 }
 
-// StopsFilter.propTypes = {
-// };
+StopsFilter.propTypes = {
+  changeStopsFilter: PropTypes.func,
+  filterValue: PropTypes.objectOf(PropTypes.bool),
+};
 
-// StopsFilter.defaultProps = {
-// };
-
-// export default connect(mapStateToProps, actionCreators)(StopsFilter);
 export default StopsFilter;

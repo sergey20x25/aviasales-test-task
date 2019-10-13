@@ -1,15 +1,16 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import * as actions from '../../actions';
+import PropTypes from 'prop-types';
 import sortingTabsList from './sortingTabsList';
 import styles from './SortingTabs.module.css';
 
-class SortingTabs extends React.Component {
-  handleClick = (name) => (e) => {
+class SortingTabs extends React.PureComponent {
+  handleClick = (sortingParam) => () => {
+    const { changeSortingParam } = this.props;
+    changeSortingParam({ sortingParam });
   }
 
   render() {
-    const sort = 'price';
+    const { sortBy } = this.props;
     return (
       <div className={styles.root}>
         {sortingTabsList.map(({
@@ -18,7 +19,7 @@ class SortingTabs extends React.Component {
           isFirst,
           isLast,
         }) => {
-          const active = sort === name;
+          const active = sortBy === name;
           return (
             <button
               key={name}
@@ -34,5 +35,10 @@ class SortingTabs extends React.Component {
     );
   }
 }
+
+SortingTabs.propTypes = ({
+  changeSortingParam: PropTypes.func,
+  sortBy: PropTypes.string,
+});
 
 export default SortingTabs;

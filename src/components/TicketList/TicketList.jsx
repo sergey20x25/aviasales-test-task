@@ -1,29 +1,26 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Ticket from '../Ticket/Ticket';
-import * as actions from '../../actions';
+import NoTickets from '../NoTickets/NoTickets';
+import styles from './TicketList.module.css';
 
-// const mapStateToProps = (state) => {
-// };
-
-// const actionCreators = {
-// };
-
-const TicketList = ({ tickets }) => {
-  if (!tickets || !tickets.length) {
-    return (<div>Билеты не найдены</div>);
+const TicketList = React.memo(({ tickets, fetchingState, handleShowMore }) => {
+  if ((!tickets || !tickets.length) && fetchingState === 'done') {
+    return (<NoTickets />);
   }
   return (
-    <div>
+    <div className={styles.root}>
       {tickets.map((item) => <Ticket key={item.id} ticket={item} />)}
+      {tickets.length > 0
+        && <button className={styles.button} type="button" onClick={handleShowMore}>ПОКАЗАТЬ ЕЩЕ</button>}
     </div>
   );
-};
+});
 
-TicketList.propTypes = {
+TicketList.propTypes = ({
+  fetchingState: PropTypes.string,
   tickets: PropTypes.arrayOf(PropTypes.object).isRequired,
-};
+  handleShowMore: PropTypes.func,
+});
 
-// export default connect(mapStateToProps, actionCreators)(TicketList);
 export default TicketList;

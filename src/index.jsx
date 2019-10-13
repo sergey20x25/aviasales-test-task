@@ -8,9 +8,12 @@ import reducers from './reducers';
 
 const initialState = {
   tickets: [],
-  // filters: [1, 2, 3, 4],
-  // sort: 'cheapest',
+  filters: {
+    stops: null,
+  },
+  sortBy: 'price',
   fetchingState: 'none',
+  numberOfTickets: 5,
 };
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

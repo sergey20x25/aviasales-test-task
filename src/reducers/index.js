@@ -21,7 +21,28 @@ const fetchingState = handleActions({
   },
 }, 'none');
 
+const filters = handleActions({
+  [actions.changeStopsFilter](state, { payload: { newValue } }) {
+    return { stops: newValue };
+  },
+}, {});
+
+const sortBy = handleActions({
+  [actions.changeSortingParam](state, { payload: { sortingParam } }) {
+    return sortingParam;
+  },
+}, '');
+
+const numberOfTickets = handleActions({
+  [actions.showMoreTickets](state) {
+    return state + 5;
+  },
+}, 5);
+
 export default combineReducers({
   tickets,
   fetchingState,
+  filters,
+  sortBy,
+  numberOfTickets,
 });

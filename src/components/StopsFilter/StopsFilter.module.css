@@ -16,16 +16,3 @@
   user-select: none;
   cursor: default;
 }
-
-.checkbox {
-  display: flex;
-  align-items: stretch;
-  height: 40px;
-  cursor: pointer;
-  font-size: 13px;
-  outline: 0;
-}
-
-.checkbox:hover {
-  background-color: #f1fcff;
-}

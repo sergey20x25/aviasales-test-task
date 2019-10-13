@@ -13,6 +13,7 @@
 
 # misc
 tickets.json
+ticketsExample.js
 .DS_Store
 .env.local
 .env.development.local

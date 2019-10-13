@@ -1,4 +1,4 @@
-export const stopsFilterList = [
+export default [
   {
     label: 'Без пересадок',
     value: 0,

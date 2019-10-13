@@ -1,6 +1,6 @@
 /* eslint-disable no-await-in-loop */
 import * as actions from '.';
-import { addIds } from '../utils';
+import { addIdsMaxStopsAndTotalDuration } from '../utils';
 import { getTicketBatchRes, getSearchId } from '../fetch';
 
 const getTickets = () => async (dispatch) => {
@@ -11,7 +11,7 @@ const getTickets = () => async (dispatch) => {
     while (!done) {
       const response = await getTicketBatchRes(params);
       const { stop, tickets: ticketBatch } = await response.json();
-      addIds(ticketBatch);
+      addIdsMaxStopsAndTotalDuration(ticketBatch);
       dispatch(actions.getTicketsSuccess({ ticketBatch }));
       done = stop;
     }

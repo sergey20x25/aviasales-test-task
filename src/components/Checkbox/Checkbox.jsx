@@ -2,10 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Checkbox.module.css';
 
-const Checkbox = ({ label, value, checked }) => (
-  <>
+const Checkbox = React.memo(({
+  label,
+  value,
+  checked,
+  onChange,
+}) => (
+  <div className={styles.root}>
     <label className={styles.label} htmlFor={value}>
-      <input className={styles.input} type="checkbox" id={value} checked={checked} value={value} />
+      <input
+        className={styles.input}
+        type="checkbox"
+        id={value}
+        checked={checked}
+        value={value}
+        onChange={onChange}
+      />
       <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
         <g fill="none" fillRule="evenodd">
           <rect
@@ -28,13 +40,14 @@ const Checkbox = ({ label, value, checked }) => (
       </svg>
       <span className={styles.title}>{label}</span>
     </label>
-  </>
-);
+  </div>
+));
 
 Checkbox.propTypes = {
   label: PropTypes.string,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   checked: PropTypes.bool,
+  onChange: PropTypes.func,
 };
 
 export default Checkbox;
