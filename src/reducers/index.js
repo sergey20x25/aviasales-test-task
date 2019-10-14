@@ -34,7 +34,7 @@ const sortBy = handleActions({
 }, '');
 
 const numberOfTickets = handleActions({
-  [actions.showMoreTickets](state) {
+  [actions.changeNumberOfTickets](state) {
     return state + 5;
   },
 }, 5);

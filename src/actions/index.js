@@ -6,4 +6,4 @@ export const getTicketsFailure = createAction('TICKETS_GET_FAILURE');
 export const fetchingDone = createAction('FETCHING_DONE');
 export const changeStopsFilter = createAction('STOPS_FILTER_CHANGE');
 export const changeSortingParam = createAction('SORTING_PARAM_CHANGE');
-export const showMoreTickets = createAction('SHOW_MORE_TICKETS');
+export const changeNumberOfTickets = createAction('CHANGE_NUMBER_OF_TICKETS');
