@@ -7,25 +7,24 @@ import styles from './StopsFilter.module.css';
 
 const allValues = stopsFilterList.reduce((acc, item) => ({ ...acc, [item.value]: true }), {});
 class StopsFilter extends React.PureComponent {
-  handleCheck = (event) => {
-    const { checked, value } = event.target;
+  handleCheck = (checked, value) => {
     const { filterValue, handleFilterChange } = this.props;
     let newValue;
     if (checked) {
-      newValue = omit(filterValue, `${value}`);
-    } else {
       newValue = { ...filterValue, [value]: true };
+    } else {
+      newValue = omit(filterValue, `${value}`);
     }
     if (Object.keys(newValue).length === 0) {
       newValue = null;
     }
+
     handleFilterChange({ newValue });
   }
 
-  handleAllCheck = (event) => {
+  handleAllCheck = (checked) => {
     const { handleFilterChange } = this.props;
-    const { checked } = event.target;
-    const newValue = checked ? null : allValues;
+    const newValue = checked ? allValues : null;
     handleFilterChange({ newValue });
   }
 
