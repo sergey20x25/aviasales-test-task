@@ -16,13 +16,10 @@
   color: #4a4a4a;
   cursor: pointer;
   user-select: none;
+  outline: none;
 }
 
-.button:focus {
-  outline: 1px solid #2196F3;
-}
-
-.button:hover {
+.button:hover, .button:focus {
   background-color: #2196F3;
   color: #ffffff;
 }

@@ -4,13 +4,10 @@
   height: 40px;
   cursor: pointer;
   font-size: 13px;
+  outline: none;
 }
 
-.root:focus {
-  outline: 1px solid #2196F3;
-}
-
-.root:hover {
+.root:hover, .root:focus {
   background-color: #f1fcff;
 }
 
