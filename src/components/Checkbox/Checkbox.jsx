@@ -62,9 +62,9 @@ class Checkbox extends React.PureComponent {
           <span className={styles.title}>{label}</span>
         </label>
       </div>
-    )
+    );
   }
-};
+}
 
 Checkbox.propTypes = {
   label: PropTypes.string,
