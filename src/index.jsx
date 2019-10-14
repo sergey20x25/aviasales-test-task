@@ -14,6 +14,7 @@ const initialState = {
   sortBy: 'price',
   fetchingState: 'none',
   numberOfTickets: 5,
+  isError: false,
 };
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

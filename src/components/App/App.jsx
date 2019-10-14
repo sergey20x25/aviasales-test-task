@@ -4,17 +4,25 @@ import PropTypes from 'prop-types';
 import * as thunkActions from '../../actions/thunkActions';
 import * as actions from '../../actions';
 import { ticketsToRenderSelector } from '../../selectors';
+import Error from '../Error/Error';
 import Header from '../Header/Header';
 import Loading from '../Loading/Loading';
+import NoTickets from '../NoTickets/NoTickets';
 import StopsFilter from '../StopsFilter/StopsFilter';
 import SortingTabs from '../SortingTabs/SortingTabs';
 import TicketList from '../TicketList/TicketList';
 import styles from './App.module.css';
 
 const mapStateToProps = (state) => {
-  const { fetchingState, sortBy, filters } = state;
+  const {
+    fetchingState,
+    sortBy,
+    filters,
+    isError,
+  } = state;
   const props = {
     fetchingState,
+    isError,
     sortBy,
     tickets: ticketsToRenderSelector(state),
     stopsFilterValue: filters.stops,
@@ -44,11 +52,13 @@ class App extends React.Component {
       changeStopsFilter,
       changeSortingParam,
       showMore,
+      isError,
     } = this.props;
     const isLoading = fetchingState === 'fetching';
     return (
       <>
         <Header />
+        {isError ? <Error /> : null}
         <div className={styles.root}>
           <div className={styles.container}>
             <div className={styles.sidebar}>
@@ -57,6 +67,7 @@ class App extends React.Component {
             </div>
             <div className={styles.main}>
               <SortingTabs sortBy={sortBy} handleTabChange={changeSortingParam} />
+              {!tickets.length && !isLoading && !isError ? <NoTickets /> : null}
               <TicketList tickets={tickets} isLoading={isLoading} handleShowMore={showMore} />
             </div>
           </div>
@@ -75,6 +86,7 @@ App.propTypes = ({
   sortBy: PropTypes.string,
   tickets: PropTypes.arrayOf(PropTypes.object),
   stopsFilterValue: PropTypes.objectOf(PropTypes.bool),
+  isError: PropTypes.bool,
 });
 
 export default connect(mapStateToProps, actionCreators)(App);

@@ -1,5 +1,5 @@
 .root {
-  padding: 20px;
+  padding: 10px 10px 15px;
   margin-top: 20px;
   box-sizing: border-box;
   background: #FFFFFF;
@@ -8,13 +8,21 @@
   font-size: 12px;
 }
 
+.header {
+  display: flex;
+  padding: 10px 10px 15px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .row {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
 }
 
 .price {
@@ -27,10 +35,6 @@
 
 .carrier {
   text-align: right;
-}
-
-.segments {
-  padding-top: 10px;
 }
 
 .carrier > img {

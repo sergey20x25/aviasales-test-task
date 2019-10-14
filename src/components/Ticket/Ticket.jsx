@@ -13,7 +13,7 @@ const Ticket = React.memo(({ ticket }) => {
   } = ticket;
   return (
     <div className={styles.root}>
-      <div className={styles.row}>
+      <div className={styles.header}>
         <div className={styles.price}>
           {`${splitNumber(price)} Р`}
         </div>

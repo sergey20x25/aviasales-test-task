@@ -39,10 +39,20 @@ const numberOfTickets = handleActions({
   },
 }, 5);
 
+const isError = handleActions({
+  [actions.getTicketsFailure]() {
+    return true;
+  },
+  [actions.getTicketsSuccess]() {
+    return false;
+  },
+}, false);
+
 export default combineReducers({
   tickets,
   fetchingState,
   filters,
   sortBy,
   numberOfTickets,
+  isError,
 });
