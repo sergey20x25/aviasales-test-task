@@ -61,11 +61,11 @@ class App extends React.Component {
         {isError ? <Error /> : null}
         <div className={styles.root}>
           <div className={styles.container}>
-            <div className={styles.sidebar}>
+            <aside className={styles.sidebar}>
               <StopsFilter filterValue={stopsFilterValue} handleFilterChange={changeStopsFilter} />
               <Loading isLoading={isLoading} />
-            </div>
-            <div className={styles.main}>
+            </aside>
+            <section className={styles.main}>
               <SortingTabs sortBy={sortingParam} handleTabChange={changeSortingParam} />
               {!tickets.length && !isLoading && !isError ? <NoTickets /> : null}
               <TicketList
@@ -73,7 +73,7 @@ class App extends React.Component {
                 isLoading={isLoading}
                 handleShowMore={changeNumberOfTickets}
               />
-            </div>
+            </section>
           </div>
         </div>
       </>
