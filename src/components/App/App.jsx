@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import * as thunkActions from '../../actions/thunkActions';
 import * as actions from '../../actions';
 import { ticketsToRenderSelector } from '../../selectors';
 import Error from '../Error/Error';
@@ -34,7 +33,7 @@ const actionCreators = {
   changeSortingParam: actions.changeSortingParam,
   changeStopsFilter: actions.changeStopsFilter,
   changeNumberOfTickets: actions.changeNumberOfTickets,
-  getTickets: thunkActions.getTickets,
+  getTickets: actions.getTickets,
 };
 
 class App extends React.Component {

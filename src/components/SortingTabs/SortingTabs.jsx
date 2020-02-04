@@ -6,7 +6,7 @@ import styles from './SortingTabs.module.css';
 class SortingTabs extends React.PureComponent {
   handleClick = (sortingParam) => () => {
     const { handleTabChange } = this.props;
-    handleTabChange({ sortingParam });
+    handleTabChange(sortingParam);
   }
 
   render() {

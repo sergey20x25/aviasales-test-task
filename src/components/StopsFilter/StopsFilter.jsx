@@ -19,13 +19,13 @@ class StopsFilter extends React.PureComponent {
       newValue = null;
     }
 
-    handleFilterChange({ newValue });
+    handleFilterChange(newValue);
   }
 
   handleAllCheck = (checked) => {
     const { handleFilterChange } = this.props;
     const newValue = checked ? allValues : null;
-    handleFilterChange({ newValue });
+    handleFilterChange(newValue);
   }
 
   render() {

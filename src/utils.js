@@ -16,13 +16,13 @@ const getTotalDuration = ({ segments }) => {
   return totalDuration;
 };
 
-const addIdsMaxStopsAndTotalDuration = (array) => {
-  array.forEach((item) => {
-    item.id = uuid();
-    item.maxStops = getMaxStops(item);
-    item.totalDuration = getTotalDuration(item);
-  });
-};
+const addIdsMaxStopsAndTotalDuration = (array) => array.map((item) => (
+  {
+    ...item,
+    id: uuid(),
+    maxStops: getMaxStops(item),
+    totalDuration: getTotalDuration(item),
+  }));
 
 const formatTwoDigits = (value) => {
   const str = String(value);
