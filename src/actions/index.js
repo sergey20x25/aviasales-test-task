@@ -47,6 +47,5 @@ export const getTickets = () => async (dispatch) => {
     dispatch(fetchingDone());
   } catch (e) {
     dispatch(getTicketsFailure());
-    throw e;
   }
 };

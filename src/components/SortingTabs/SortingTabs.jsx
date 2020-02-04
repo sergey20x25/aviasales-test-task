@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import SortingButton from './SortingButton';
 import sortingTabsList from './sortingTabsList';
 import styles from './SortingTabs.module.css';
 
@@ -21,14 +22,14 @@ class SortingTabs extends React.PureComponent {
         }) => {
           const active = sortBy === name;
           return (
-            <button
+            <SortingButton
               key={name}
+              name={name}
+              label={label}
               type="button"
-              onClick={this.handleClick(name)}
+              handleClick={this.handleClick}
               className={`${styles.button} ${isFirst ? styles.first : ''} ${isLast ? styles.last : ''} ${active ? styles.active : ''}`}
-            >
-              {label}
-            </button>
+            />
           );
         })}
       </div>
