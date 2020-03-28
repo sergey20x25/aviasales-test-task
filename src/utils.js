@@ -39,7 +39,7 @@ const getStartAndFinishTime = (dateString, duration) => {
   const endDate = addMinutes(date, duration);
   const endHours = formatTwoDigits(endDate.getHours());
   const endMinutes = formatTwoDigits(endDate.getHours());
-  return `${hours}:${minutes} - ${endHours}:${endMinutes}`;
+  return `${hours}:${minutes} ‒ ${endHours}:${endMinutes}`;
 };
 
 const splitNumber = (number) => {

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import omit from 'lodash-es/omit';
+import uuid from 'uuid/v4';
 import Checkbox from '../Checkbox/Checkbox';
 import stopsFilterList from './stopsFilterList';
 import styles from './StopsFilter.module.css';
@@ -37,7 +38,7 @@ class StopsFilter extends React.PureComponent {
         <Checkbox value="all" checked={checkedAll} label="Все" onCheck={this.handleAllCheck} />
         {stopsFilterList.map(({ label, value }) => (
           <Checkbox
-            key={value}
+            key={uuid()}
             value={value}
             checked={checkedAll || !(filterValue.hasOwnProperty(value))}
             label={label}

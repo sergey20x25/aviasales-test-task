@@ -16,7 +16,7 @@ const Segment = ({ segment }) => {
     <div key={date} className={styles.segment}>
       <div>
         <div className={styles.label}>
-          {`${origin} – ${destination}`}
+          {`${origin} ‒ ${destination}`}
         </div>
         <div className={styles.info}>
           {getStartAndFinishTime(date, duration)}

@@ -6,6 +6,7 @@
 
 .button {
   flex-grow: 1;
+  font-family: Open Sans, sans-serif;
   text-align: center;
   padding: 15px;
   border: 1px solid #DFE5EC;

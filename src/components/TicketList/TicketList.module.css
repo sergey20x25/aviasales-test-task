@@ -19,7 +19,12 @@
   outline: none;
 }
 
-.button:hover, .button:focus {
+.button:hover {
+  background-color: #5db2f5;
+  color: #ffffff;
+}
+
+.button:focus {
   background-color: #2196F3;
   color: #ffffff;
 }
