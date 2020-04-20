@@ -1,5 +1,7 @@
 import uuid from 'uuid/v4';
 
+const omit = (key, { [key]: _, ...obj }) => obj;
+
 const getMaxStops = ({ segments }) => {
   if (segments.length === 1) return segments[0].stops.length;
   const maxStops = segments.reduce((acc, value) => (
@@ -75,5 +77,6 @@ export {
   formatDuration,
   getPluralForm,
   getStartAndFinishTime,
+  omit,
   splitNumber,
 };

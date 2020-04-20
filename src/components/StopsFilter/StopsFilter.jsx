@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import omit from 'lodash-es/omit';
+import omit from '../../utils';
 import uuid from 'uuid/v4';
 import Checkbox from '../Checkbox/Checkbox';
 import stopsFilterList from './stopsFilterList';
@@ -14,7 +14,7 @@ class StopsFilter extends React.PureComponent {
     if (checked) {
       newValue = { ...filterValue, [value]: true };
     } else {
-      newValue = omit(filterValue, `${value}`);
+      newValue = omit(`${value}`, filterValue);
     }
     if (Object.keys(newValue).length === 0) {
       newValue = null;
