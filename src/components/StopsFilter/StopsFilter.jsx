@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import omit from '../../utils';
 import uuid from 'uuid/v4';
+import { omit } from '../../utils';
 import Checkbox from '../Checkbox/Checkbox';
 import stopsFilterList from './stopsFilterList';
 import styles from './StopsFilter.module.css';
